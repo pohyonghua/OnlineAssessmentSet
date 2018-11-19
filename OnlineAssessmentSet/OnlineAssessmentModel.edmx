@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlineAssessmentDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionId" Type="int" />
+          <Property Name="answerScore" Type="int" />
+          <Property Name="answerName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AssessmentSet">
+          <Key>
+            <PropertyRef Name="assessId" />
+          </Key>
+          <Property Name="assessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assessName" Type="varchar" MaxLength="50" />
+          <Property Name="timeLimit" Type="time" Precision="7" />
+          <Property Name="allowAttempt" Type="int" />
+          <Property Name="dateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AssessmentSet_Detail">
+          <Key>
+            <PropertyRef Name="studId" />
+          </Key>
+          <Property Name="studId" Type="int" Nullable="false" />
+          <Property Name="lecId" Type="int" />
+          <Property Name="assessId" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="startTime" Type="time" Precision="7" />
+          <Property Name="endTime" Type="time" Precision="7" />
+          <Property Name="accessStatus" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="lecId" />
+          </Key>
+          <Property Name="lecId" Type="int" Nullable="false" />
+          <Property Name="lecLastName" Type="varchar" MaxLength="50" />
+          <Property Name="lecFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="lecIc" Type="int" />
+          <Property Name="lecEmail" Type="varchar" MaxLength="50" />
+          <Property Name="lecContactNo" Type="int" />
+        </EntityType>
+        <EntityType Name="ProgrammeCode">
+          <Key>
+            <PropertyRef Name="progId" />
+          </Key>
+          <Property Name="progId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="progCode" Type="char" MaxLength="3" />
+          <Property Name="progName" Type="varbinary" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="assessId" Type="int" />
+          <Property Name="questionName" Type="varchar" MaxLength="50" />
+          <Property Name="questionType" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studId" />
+          </Key>
+          <Property Name="studId" Type="int" Nullable="false" />
+          <Property Name="progId" Type="int" />
+          <Property Name="studLastName" Type="varchar" MaxLength="50" />
+          <Property Name="studFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="studIc" Type="int" />
+          <Property Name="studEmail" Type="varchar" MaxLength="50" />
+          <Property Name="studContactNo" Type="int" />
+          <Property Name="studYearIntake" Type="date" />
+        </EntityType>
+        <Association Name="FK__Answer__question__276EDEB3">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__asses__71D1E811">
+          <End Role="AssessmentSet" Type="Self.AssessmentSet" Multiplicity="0..1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentSet">
+              <PropertyRef Name="assessId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="assessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__lecId__70DDC3D8">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="lecId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="lecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__studI__6FE99F9F">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="studId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="studId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__assess__5DCAEF64">
+          <End Role="AssessmentSet" Type="Self.AssessmentSet" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentSet">
+              <PropertyRef Name="assessId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="assessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__progId__5EBF139D">
+          <End Role="ProgrammeCode" Type="Self.ProgrammeCode" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgrammeCode">
+              <PropertyRef Name="progId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="progId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineAssessmentDatabaseModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentSet" EntityType="Self.AssessmentSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgrammeCode" EntityType="Self.ProgrammeCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Answer__question__276EDEB3" Association="Self.FK__Answer__question__276EDEB3">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__asses__71D1E811" Association="Self.FK__Assessmen__asses__71D1E811">
+            <End Role="AssessmentSet" EntitySet="AssessmentSet" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__lecId__70DDC3D8" Association="Self.FK__Assessmen__lecId__70DDC3D8">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__studI__6FE99F9F" Association="Self.FK__Assessmen__studI__6FE99F9F">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__assess__5DCAEF64" Association="Self.FK__Question__assess__5DCAEF64">
+            <End Role="AssessmentSet" EntitySet="AssessmentSet" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__progId__5EBF139D" Association="Self.FK__Student__progId__5EBF139D">
+            <End Role="ProgrammeCode" EntitySet="ProgrammeCode" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineAssessmentDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="answerId" />
+          </Key>
+          <Property Name="answerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionId" Type="Int32" />
+          <Property Name="answerScore" Type="Int32" />
+          <Property Name="answerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Answer__question__276EDEB3" FromRole="Answer" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="AssessmentSet">
+          <Key>
+            <PropertyRef Name="assessId" />
+          </Key>
+          <Property Name="assessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assessName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timeLimit" Type="Time" Precision="7" />
+          <Property Name="allowAttempt" Type="Int32" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__assess__5DCAEF64" FromRole="AssessmentSet" ToRole="Question" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet" ToRole="AssessmentSet_Detail" />
+        </EntityType>
+        <EntityType Name="AssessmentSet_Detail">
+          <Key>
+            <PropertyRef Name="studId" />
+          </Key>
+          <Property Name="studId" Type="Int32" Nullable="false" />
+          <Property Name="lecId" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="startTime" Type="Time" Precision="7" />
+          <Property Name="endTime" Type="Time" Precision="7" />
+          <Property Name="accessStatus" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Assessmen__lecId__5CD6CB2B" FromRole="AssessmentSet_Detail" ToRole="Lecturer" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Assessmen__studI__47DBAE45" FromRole="AssessmentSet_Detail" ToRole="Student" />
+          <Property Name="assessId" Type="Int32" />
+          <NavigationProperty Name="AssessmentSet" Relationship="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet_Detail" ToRole="AssessmentSet" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="lecId" />
+          </Key>
+          <Property Name="lecId" Type="Int32" Nullable="false" />
+          <Property Name="lecLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lecFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lecIc" Type="Int32" />
+          <Property Name="lecEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lecContactNo" Type="Int32" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__lecId__5CD6CB2B" FromRole="Lecturer" ToRole="AssessmentSet_Detail" />
+        </EntityType>
+        <EntityType Name="ProgrammeCode">
+          <Key>
+            <PropertyRef Name="progId" />
+          </Key>
+          <Property Name="progId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="progCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="progName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__progId__5EBF139D" FromRole="ProgrammeCode" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="assessId" Type="Int32" />
+          <Property Name="questionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="questionType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__question__276EDEB3" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="AssessmentSet" Relationship="Self.FK__Question__assess__5DCAEF64" FromRole="Question" ToRole="AssessmentSet" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studId" />
+          </Key>
+          <Property Name="studId" Type="Int32" Nullable="false" />
+          <Property Name="progId" Type="Int32" />
+          <Property Name="studLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studIc" Type="Int32" />
+          <Property Name="studEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studContactNo" Type="Int32" />
+          <Property Name="studYearIntake" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__studI__47DBAE45" FromRole="Student" ToRole="AssessmentSet_Detail" />
+          <NavigationProperty Name="ProgrammeCode" Relationship="Self.FK__Student__progId__5EBF139D" FromRole="Student" ToRole="ProgrammeCode" />
+        </EntityType>
+        <Association Name="FK__Answer__question__276EDEB3">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__assess__5DCAEF64">
+          <End Role="AssessmentSet" Type="Self.AssessmentSet" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentSet">
+              <PropertyRef Name="assessId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="assessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__lecId__5CD6CB2B">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="lecId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="lecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__studI__47DBAE45">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="studId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="studId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__progId__5EBF139D">
+          <End Role="ProgrammeCode" Type="Self.ProgrammeCode" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgrammeCode">
+              <PropertyRef Name="progId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="progId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineAssessmentDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="AssessmentSets" EntityType="Self.AssessmentSet" />
+          <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+          <EntitySet Name="ProgrammeCodes" EntityType="Self.ProgrammeCode" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK__Answer__question__276EDEB3" Association="Self.FK__Answer__question__276EDEB3">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__assess__5DCAEF64" Association="Self.FK__Question__assess__5DCAEF64">
+            <End Role="AssessmentSet" EntitySet="AssessmentSets" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__lecId__5CD6CB2B" Association="Self.FK__Assessmen__lecId__5CD6CB2B">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__studI__47DBAE45" Association="Self.FK__Assessmen__studI__47DBAE45">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__progId__5EBF139D" Association="Self.FK__Student__progId__5EBF139D">
+            <End Role="ProgrammeCode" EntitySet="ProgrammeCodes" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__asses__71D1E811" Association="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811">
+            <End Role="AssessmentSet" EntitySet="AssessmentSets" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__Assessmen__asses__71D1E811">
+          <End Type="OnlineAssessmentDatabaseModel.AssessmentSet" Role="AssessmentSet" Multiplicity="0..1" />
+          <End Type="OnlineAssessmentDatabaseModel.AssessmentSet_Detail" Role="AssessmentSet_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentSet">
+              <PropertyRef Name="assessId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="assessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineAssessmentDatabaseModelStoreContainer" CdmEntityContainer="OnlineAssessmentDatabaseEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="answerId" ColumnName="answerId" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="answerScore" ColumnName="answerScore" />
+                <ScalarProperty Name="answerName" ColumnName="answerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentSets">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.AssessmentSet">
+              <MappingFragment StoreEntitySet="AssessmentSet">
+                <ScalarProperty Name="assessId" ColumnName="assessId" />
+                <ScalarProperty Name="assessName" ColumnName="assessName" />
+                <ScalarProperty Name="timeLimit" ColumnName="timeLimit" />
+                <ScalarProperty Name="allowAttempt" ColumnName="allowAttempt" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentSet_Detail">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.AssessmentSet_Detail">
+              <MappingFragment StoreEntitySet="AssessmentSet_Detail">
+                <ScalarProperty Name="assessId" ColumnName="assessId" />
+                <ScalarProperty Name="studId" ColumnName="studId" />
+                <ScalarProperty Name="lecId" ColumnName="lecId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="accessStatus" ColumnName="accessStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturer">
+                <ScalarProperty Name="lecId" ColumnName="lecId" />
+                <ScalarProperty Name="lecLastName" ColumnName="lecLastName" />
+                <ScalarProperty Name="lecFirstName" ColumnName="lecFirstName" />
+                <ScalarProperty Name="lecIc" ColumnName="lecIc" />
+                <ScalarProperty Name="lecEmail" ColumnName="lecEmail" />
+                <ScalarProperty Name="lecContactNo" ColumnName="lecContactNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgrammeCodes">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.ProgrammeCode">
+              <MappingFragment StoreEntitySet="ProgrammeCode">
+                <ScalarProperty Name="progId" ColumnName="progId" />
+                <ScalarProperty Name="progCode" ColumnName="progCode" />
+                <ScalarProperty Name="progName" ColumnName="progName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="assessId" ColumnName="assessId" />
+                <ScalarProperty Name="questionName" ColumnName="questionName" />
+                <ScalarProperty Name="questionType" ColumnName="questionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="studId" ColumnName="studId" />
+                <ScalarProperty Name="progId" ColumnName="progId" />
+                <ScalarProperty Name="studLastName" ColumnName="studLastName" />
+                <ScalarProperty Name="studFirstName" ColumnName="studFirstName" />
+                <ScalarProperty Name="studIc" ColumnName="studIc" />
+                <ScalarProperty Name="studEmail" ColumnName="studEmail" />
+                <ScalarProperty Name="studContactNo" ColumnName="studContactNo" />
+                <ScalarProperty Name="studYearIntake" ColumnName="studYearIntake" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

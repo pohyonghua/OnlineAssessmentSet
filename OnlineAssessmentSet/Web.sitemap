@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/Homepage.aspx" title="Home"  description="Home">
+    <siteMapNode url="~/Register.aspx" title="Register"  description="Register" />
+    <siteMapNode url="~/Login.aspx" title="Login"  description="Login" />
+
+    <siteMapNode title="Lecturer" >
+      <siteMapNode url="~/Lecturer/CreateAssessment.aspx" title="Create Assessment"  description="Create Assessment" />
+      <!--  <siteMapNode url="~/Lecturer/ModifyAssessment.aspx" title="Modify Assessment"  description="Modify Assessment" />
+      <siteMapNode url="~/Lecturer/DeleteAssessment.aspx" title="Delete Assessment"  description="Delete Assessment" />-->
+      <siteMapNode url="~/Lecturer/ViewAssessment.aspx" title="View Assessment"  description="View Assessment" />
+      <siteMapNode url="~/Lecturer/ViewStudentScore.aspx" title="View Student Score"  description="View Student Score" />
+    </siteMapNode>
+    <siteMapNode title="Student" >
+      <siteMapNode url="~/Student/AssessmentSet.aspx" title="Assessment Set"  description="Assessment Set" />
+      <siteMapNode url="~/Student/ViewScoreAssessment.aspx" title="View Score"  description="View Score" />
+    </siteMapNode>
+
+  </siteMapNode>
+</siteMap>

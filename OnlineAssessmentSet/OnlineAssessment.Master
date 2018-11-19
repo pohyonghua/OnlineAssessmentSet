@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="OnlineAssessment.master.cs" Inherits="OnlineAssessmentSet.OnlineAssessment" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+           <h1>Online Assessment Page</h1>
+        </div>
+        <div >
+            <asp:SiteMapPath ID="SiteMapPathNavigation" runat="server">
+            </asp:SiteMapPath>
+            <br />
+            <div style="text-align: right;">
+                <asp:HyperLink ID="hplLogin" runat="server" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
+                <asp:HyperLink ID="hplRegister" runat="server" NavigateUrl="~/Register.aspx">Register</asp:HyperLink>
+            </div>
+        </div>
+        <div style="width: 20%; float:left"> 
+
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSourceNavigation" ShowLines="True" Width="201px">
+            </asp:TreeView>
+            <asp:SiteMapDataSource ID="SiteMapDataSourceNavigation" runat="server" />
+            <br />
+
+        </div>
+        <div style="width: 80%;content:"";display: table; clear: both">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <br style="clear:both;"/>
+    </form>
+</body>
+</html>
