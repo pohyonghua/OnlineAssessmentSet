@@ -47,14 +47,6 @@
           <Property Name="lecEmail" Type="varchar" MaxLength="50" />
           <Property Name="lecContactNo" Type="int" />
         </EntityType>
-        <EntityType Name="ProgrammeCode">
-          <Key>
-            <PropertyRef Name="progId" />
-          </Key>
-          <Property Name="progId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="progCode" Type="char" MaxLength="3" />
-          <Property Name="progName" Type="varbinary" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="questionId" />
@@ -69,7 +61,6 @@
             <PropertyRef Name="studId" />
           </Key>
           <Property Name="studId" Type="int" Nullable="false" />
-          <Property Name="progId" Type="int" />
           <Property Name="studLastName" Type="varchar" MaxLength="50" />
           <Property Name="studFirstName" Type="varchar" MaxLength="50" />
           <Property Name="studIc" Type="int" />
@@ -137,24 +128,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__progId__5EBF139D">
-          <End Role="ProgrammeCode" Type="Self.ProgrammeCode" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProgrammeCode">
-              <PropertyRef Name="progId" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="progId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="OnlineAssessmentDatabaseModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentSet" EntityType="Self.AssessmentSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProgrammeCode" EntityType="Self.ProgrammeCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Answer__question__276EDEB3" Association="Self.FK__Answer__question__276EDEB3">
@@ -176,10 +154,6 @@
           <AssociationSet Name="FK__Question__assess__5DCAEF64" Association="Self.FK__Question__assess__5DCAEF64">
             <End Role="AssessmentSet" EntitySet="AssessmentSet" />
             <End Role="Question" EntitySet="Question" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__progId__5EBF139D" Association="Self.FK__Student__progId__5EBF139D">
-            <End Role="ProgrammeCode" EntitySet="ProgrammeCode" />
-            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -235,15 +209,6 @@
           <Property Name="lecContactNo" Type="Int32" />
           <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__lecId__5CD6CB2B" FromRole="Lecturer" ToRole="AssessmentSet_Detail" />
         </EntityType>
-        <EntityType Name="ProgrammeCode">
-          <Key>
-            <PropertyRef Name="progId" />
-          </Key>
-          <Property Name="progId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="progCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="progName" Type="Binary" MaxLength="50" FixedLength="false" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Student__progId__5EBF139D" FromRole="ProgrammeCode" ToRole="Student" />
-        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="questionId" />
@@ -260,7 +225,6 @@
             <PropertyRef Name="studId" />
           </Key>
           <Property Name="studId" Type="Int32" Nullable="false" />
-          <Property Name="progId" Type="Int32" />
           <Property Name="studLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studIc" Type="Int32" />
@@ -268,7 +232,6 @@
           <Property Name="studContactNo" Type="Int32" />
           <Property Name="studYearIntake" Type="DateTime" Precision="0" />
           <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__studI__47DBAE45" FromRole="Student" ToRole="AssessmentSet_Detail" />
-          <NavigationProperty Name="ProgrammeCode" Relationship="Self.FK__Student__progId__5EBF139D" FromRole="Student" ToRole="ProgrammeCode" />
         </EntityType>
         <Association Name="FK__Answer__question__276EDEB3">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -318,24 +281,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__progId__5EBF139D">
-          <End Role="ProgrammeCode" Type="Self.ProgrammeCode" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProgrammeCode">
-              <PropertyRef Name="progId" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="progId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="OnlineAssessmentDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="AssessmentSets" EntityType="Self.AssessmentSet" />
           <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" />
           <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
-          <EntitySet Name="ProgrammeCodes" EntityType="Self.ProgrammeCode" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <AssociationSet Name="FK__Answer__question__276EDEB3" Association="Self.FK__Answer__question__276EDEB3">
@@ -353,10 +303,6 @@
           <AssociationSet Name="FK__Assessmen__studI__47DBAE45" Association="Self.FK__Assessmen__studI__47DBAE45">
             <End Role="Student" EntitySet="Students" />
             <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__progId__5EBF139D" Association="Self.FK__Student__progId__5EBF139D">
-            <End Role="ProgrammeCode" EntitySet="ProgrammeCodes" />
-            <End Role="Student" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK__Assessmen__asses__71D1E811" Association="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811">
             <End Role="AssessmentSet" EntitySet="AssessmentSets" />
@@ -427,15 +373,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProgrammeCodes">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.ProgrammeCode">
-              <MappingFragment StoreEntitySet="ProgrammeCode">
-                <ScalarProperty Name="progId" ColumnName="progId" />
-                <ScalarProperty Name="progCode" ColumnName="progCode" />
-                <ScalarProperty Name="progName" ColumnName="progName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Question">
               <MappingFragment StoreEntitySet="Question">
@@ -450,7 +387,6 @@
             <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Student">
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="studId" ColumnName="studId" />
-                <ScalarProperty Name="progId" ColumnName="progId" />
                 <ScalarProperty Name="studLastName" ColumnName="studLastName" />
                 <ScalarProperty Name="studFirstName" ColumnName="studFirstName" />
                 <ScalarProperty Name="studIc" ColumnName="studIc" />

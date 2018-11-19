@@ -4,19 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b59ee1a4f73444f9b0cb3d2ed85949bd" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Answer" Width="1.5" PointX="12" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet_Detail" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="b59ee1a4f73444f9b0cb3d2ed85949bd" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Answer" Width="1.5" PointX="12.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet_Detail" Width="2" PointX="5.125" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Lecturer" Width="1.5" PointX="5.125" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.ProgrammeCode" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Question" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Question" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Student" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Answer__question__276EDEB3" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Question__assess__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__lecId__5CD6CB2B" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__studI__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Student__progId__5EBF139D" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" />
       </Diagram>
     </edmx:Diagrams>
