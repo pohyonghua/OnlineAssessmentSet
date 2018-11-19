@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/OnlineAssessment.Master" AutoEventWireup="true" CodeBehind="CreateAssessment.aspx.cs" Inherits="OnlineAssessmentSet.Lecturer.CreateAssessment" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/OnlineAssessment.Master" AutoEventWireup="true" CodeBehind="CreateAssessment.aspx.cs" Inherits="OnlineAssessmentSet.LecturerFolder.CreateAssessment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <h1>Create Assessment! :)</h1>

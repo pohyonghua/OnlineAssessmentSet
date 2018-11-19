@@ -16,14 +16,14 @@ namespace OnlineAssessmentSet
     {
         public int studId { get; set; }
         public Nullable<int> lecId { get; set; }
+        public Nullable<int> assessId { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> startTime { get; set; }
         public Nullable<System.TimeSpan> endTime { get; set; }
         public string accessStatus { get; set; }
-        public Nullable<int> assessId { get; set; }
     
+        public virtual AssessmentSet AssessmentSet { get; set; }
         public virtual Lecturer Lecturer { get; set; }
         public virtual Student Student { get; set; }
-        public virtual AssessmentSet AssessmentSet { get; set; }
     }
 }

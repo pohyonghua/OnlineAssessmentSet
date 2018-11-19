@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineAssessmentDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OnlineAssessmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="answerId" />
@@ -128,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OnlineAssessmentDatabaseModelStoreContainer">
+        <EntityContainer Name="OnlineAssessmentModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentSet" EntityType="Self.AssessmentSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" Schema="dbo" store:Type="Tables" />
@@ -156,10 +156,11 @@
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="OnlineAssessmentDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="OnlineAssessmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="answerId" />
@@ -179,8 +180,8 @@
           <Property Name="timeLimit" Type="Time" Precision="7" />
           <Property Name="allowAttempt" Type="Int32" />
           <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet" ToRole="AssessmentSet_Detail" />
           <NavigationProperty Name="Questions" Relationship="Self.FK__Question__assess__5DCAEF64" FromRole="AssessmentSet" ToRole="Question" />
-          <NavigationProperty Name="AssessmentSet_Detail" Relationship="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet" ToRole="AssessmentSet_Detail" />
         </EntityType>
         <EntityType Name="AssessmentSet_Detail">
           <Key>
@@ -188,14 +189,14 @@
           </Key>
           <Property Name="studId" Type="Int32" Nullable="false" />
           <Property Name="lecId" Type="Int32" />
+          <Property Name="assessId" Type="Int32" />
           <Property Name="date" Type="DateTime" Precision="0" />
           <Property Name="startTime" Type="Time" Precision="7" />
           <Property Name="endTime" Type="Time" Precision="7" />
           <Property Name="accessStatus" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Assessmen__lecId__5CD6CB2B" FromRole="AssessmentSet_Detail" ToRole="Lecturer" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Assessmen__studI__47DBAE45" FromRole="AssessmentSet_Detail" ToRole="Student" />
-          <Property Name="assessId" Type="Int32" />
-          <NavigationProperty Name="AssessmentSet" Relationship="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet_Detail" ToRole="AssessmentSet" />
+          <NavigationProperty Name="AssessmentSet" Relationship="Self.FK__Assessmen__asses__71D1E811" FromRole="AssessmentSet_Detail" ToRole="AssessmentSet" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Assessmen__lecId__70DDC3D8" FromRole="AssessmentSet_Detail" ToRole="Lecturer" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Assessmen__studI__6FE99F9F" FromRole="AssessmentSet_Detail" ToRole="Student" />
         </EntityType>
         <EntityType Name="Lecturer">
           <Key>
@@ -207,7 +208,7 @@
           <Property Name="lecIc" Type="Int32" />
           <Property Name="lecEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="lecContactNo" Type="Int32" />
-          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__lecId__5CD6CB2B" FromRole="Lecturer" ToRole="AssessmentSet_Detail" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__lecId__70DDC3D8" FromRole="Lecturer" ToRole="AssessmentSet_Detail" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -231,7 +232,7 @@
           <Property Name="studEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studContactNo" Type="Int32" />
           <Property Name="studYearIntake" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__studI__47DBAE45" FromRole="Student" ToRole="AssessmentSet_Detail" />
+          <NavigationProperty Name="AssessmentSet_Detail" Relationship="Self.FK__Assessmen__studI__6FE99F9F" FromRole="Student" ToRole="AssessmentSet_Detail" />
         </EntityType>
         <Association Name="FK__Answer__question__276EDEB3">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -242,6 +243,18 @@
             </Principal>
             <Dependent Role="Answer">
               <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assessmen__asses__71D1E811">
+          <End Role="AssessmentSet" Type="Self.AssessmentSet" Multiplicity="0..1" />
+          <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssessmentSet">
+              <PropertyRef Name="assessId" />
+            </Principal>
+            <Dependent Role="AssessmentSet_Detail">
+              <PropertyRef Name="assessId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,7 +270,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Assessmen__lecId__5CD6CB2B">
+        <Association Name="FK__Assessmen__lecId__70DDC3D8">
           <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
           <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,7 +282,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Assessmen__studI__47DBAE45">
+        <Association Name="FK__Assessmen__studI__6FE99F9F">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="AssessmentSet_Detail" Type="Self.AssessmentSet_Detail" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -281,7 +294,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OnlineAssessmentDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OnlineAssessmentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="AssessmentSets" EntityType="Self.AssessmentSet" />
           <EntitySet Name="AssessmentSet_Detail" EntityType="Self.AssessmentSet_Detail" />
@@ -292,43 +305,31 @@
             <End Role="Question" EntitySet="Questions" />
             <End Role="Answer" EntitySet="Answers" />
           </AssociationSet>
+          <AssociationSet Name="FK__Assessmen__asses__71D1E811" Association="Self.FK__Assessmen__asses__71D1E811">
+            <End Role="AssessmentSet" EntitySet="AssessmentSets" />
+            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK__Question__assess__5DCAEF64" Association="Self.FK__Question__assess__5DCAEF64">
             <End Role="AssessmentSet" EntitySet="AssessmentSets" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Assessmen__lecId__5CD6CB2B" Association="Self.FK__Assessmen__lecId__5CD6CB2B">
+          <AssociationSet Name="FK__Assessmen__lecId__70DDC3D8" Association="Self.FK__Assessmen__lecId__70DDC3D8">
             <End Role="Lecturer" EntitySet="Lecturers" />
             <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Assessmen__studI__47DBAE45" Association="Self.FK__Assessmen__studI__47DBAE45">
+          <AssociationSet Name="FK__Assessmen__studI__6FE99F9F" Association="Self.FK__Assessmen__studI__6FE99F9F">
             <End Role="Student" EntitySet="Students" />
             <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Assessmen__asses__71D1E811" Association="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811">
-            <End Role="AssessmentSet" EntitySet="AssessmentSets" />
-            <End Role="AssessmentSet_Detail" EntitySet="AssessmentSet_Detail" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Assessmen__asses__71D1E811">
-          <End Type="OnlineAssessmentDatabaseModel.AssessmentSet" Role="AssessmentSet" Multiplicity="0..1" />
-          <End Type="OnlineAssessmentDatabaseModel.AssessmentSet_Detail" Role="AssessmentSet_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AssessmentSet">
-              <PropertyRef Name="assessId" />
-            </Principal>
-            <Dependent Role="AssessmentSet_Detail">
-              <PropertyRef Name="assessId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OnlineAssessmentDatabaseModelStoreContainer" CdmEntityContainer="OnlineAssessmentDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="OnlineAssessmentModelStoreContainer" CdmEntityContainer="OnlineAssessmentEntities">
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Answer">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
                 <ScalarProperty Name="answerId" ColumnName="answerId" />
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
@@ -338,7 +339,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessmentSets">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.AssessmentSet">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.AssessmentSet">
               <MappingFragment StoreEntitySet="AssessmentSet">
                 <ScalarProperty Name="assessId" ColumnName="assessId" />
                 <ScalarProperty Name="assessName" ColumnName="assessName" />
@@ -349,11 +350,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessmentSet_Detail">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.AssessmentSet_Detail">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.AssessmentSet_Detail">
               <MappingFragment StoreEntitySet="AssessmentSet_Detail">
-                <ScalarProperty Name="assessId" ColumnName="assessId" />
                 <ScalarProperty Name="studId" ColumnName="studId" />
                 <ScalarProperty Name="lecId" ColumnName="lecId" />
+                <ScalarProperty Name="assessId" ColumnName="assessId" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="startTime" ColumnName="startTime" />
                 <ScalarProperty Name="endTime" ColumnName="endTime" />
@@ -362,7 +363,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lecturers">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Lecturer">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.Lecturer">
               <MappingFragment StoreEntitySet="Lecturer">
                 <ScalarProperty Name="lecId" ColumnName="lecId" />
                 <ScalarProperty Name="lecLastName" ColumnName="lecLastName" />
@@ -374,7 +375,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Question">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
                 <ScalarProperty Name="assessId" ColumnName="assessId" />
@@ -384,7 +385,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="OnlineAssessmentDatabaseModel.Student">
+            <EntityTypeMapping TypeName="OnlineAssessmentModel.Student">
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="studId" ColumnName="studId" />
                 <ScalarProperty Name="studLastName" ColumnName="studLastName" />

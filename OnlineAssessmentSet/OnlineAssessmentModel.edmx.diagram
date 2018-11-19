@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b59ee1a4f73444f9b0cb3d2ed85949bd" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Answer" Width="1.5" PointX="12.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.AssessmentSet_Detail" Width="2" PointX="5.125" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Lecturer" Width="1.5" PointX="5.125" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Question" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentDatabaseModel.Student" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Answer__question__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Question__assess__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__lecId__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__studI__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineAssessmentDatabaseModel.FK__Assessmen__asses__71D1E811" />
+      <Diagram DiagramId="dac5f5abb4374017a20c0ff9604026dc" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Answer" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet_Detail" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Lecturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Question" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Student" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="OnlineAssessmentModel.FK__Answer__question__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAssessmentModel.FK__Assessmen__asses__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAssessmentModel.FK__Question__assess__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAssessmentModel.FK__Assessmen__lecId__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAssessmentModel.FK__Assessmen__studI__6FE99F9F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

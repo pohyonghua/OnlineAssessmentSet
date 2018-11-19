@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineAssessmentSet.Student {
+namespace OnlineAssessmentSet.StudentFolder {
     
     
-    public partial class ViewScore {
+    public partial class AssesmentSet {
     }
 }

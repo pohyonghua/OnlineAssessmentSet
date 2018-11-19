@@ -17,8 +17,8 @@ namespace OnlineAssessmentSet
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AssessmentSet()
         {
-            this.Questions = new HashSet<Question>();
             this.AssessmentSet_Detail = new HashSet<AssessmentSet_Detail>();
+            this.Questions = new HashSet<Question>();
         }
     
         public int assessId { get; set; }
@@ -28,8 +28,8 @@ namespace OnlineAssessmentSet
         public Nullable<System.DateTime> dateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Question> Questions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentSet_Detail> AssessmentSet_Detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

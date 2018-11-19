@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace OnlineAssessmentSet.Student
+namespace OnlineAssessmentSet.StudentFolder
 {
-    public partial class ViewScore : System.Web.UI.Page
+    public partial class AssesmentSet : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

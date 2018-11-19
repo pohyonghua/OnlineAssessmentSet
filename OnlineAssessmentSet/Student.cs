@@ -15,7 +15,6 @@ namespace OnlineAssessmentSet
     public partial class Student
     {
         public int studId { get; set; }
-        public Nullable<int> progId { get; set; }
         public string studLastName { get; set; }
         public string studFirstName { get; set; }
         public Nullable<int> studIc { get; set; }
@@ -24,6 +23,5 @@ namespace OnlineAssessmentSet
         public Nullable<System.DateTime> studYearIntake { get; set; }
     
         public virtual AssessmentSet_Detail AssessmentSet_Detail { get; set; }
-        public virtual ProgrammeCode ProgrammeCode { get; set; }
     }
 }
