@@ -22,8 +22,8 @@ namespace OnlineAssessmentSet
     
         public int questionId { get; set; }
         public Nullable<int> assessId { get; set; }
-        public string questionName { get; set; }
         public string questionType { get; set; }
+        public string question { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answers { get; set; }

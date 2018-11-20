@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dac5f5abb4374017a20c0ff9604026dc" Name="Diagram1">
-        <EntityTypeShape EntityType="OnlineAssessmentModel.Answer" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet_Detail" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentModel.Lecturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentModel.Question" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineAssessmentModel.Student" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Answer" Width="1.5" PointX="9.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet" Width="1.5" PointX="4.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.AssessmentSet_Detail" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Lecturer" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Question" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAssessmentModel.Student" Width="1.5" PointX="2.625" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="OnlineAssessmentModel.FK__Answer__question__276EDEB3" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentModel.FK__Assessmen__asses__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineAssessmentModel.FK__Question__assess__5DCAEF64" ManuallyRouted="false" />

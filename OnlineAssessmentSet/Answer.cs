@@ -17,7 +17,7 @@ namespace OnlineAssessmentSet
         public int answerId { get; set; }
         public Nullable<int> questionId { get; set; }
         public Nullable<int> answerScore { get; set; }
-        public string answerName { get; set; }
+        public string answer { get; set; }
     
         public virtual Question Question { get; set; }
     }
