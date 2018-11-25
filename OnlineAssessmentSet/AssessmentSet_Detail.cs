@@ -20,7 +20,6 @@ namespace OnlineAssessmentSet
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> startTime { get; set; }
         public Nullable<System.TimeSpan> endTime { get; set; }
-        public string accessStatus { get; set; }
     
         public virtual AssessmentSet AssessmentSet { get; set; }
         public virtual Lecturer Lecturer { get; set; }

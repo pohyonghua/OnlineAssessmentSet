@@ -26,6 +26,8 @@ namespace OnlineAssessmentSet
         public Nullable<System.TimeSpan> timeLimit { get; set; }
         public Nullable<int> allowAttempt { get; set; }
         public Nullable<System.DateTime> dateCreated { get; set; }
+        public string accessStatus { get; set; }
+        public string assessType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentSet_Detail> AssessmentSet_Detail { get; set; }
