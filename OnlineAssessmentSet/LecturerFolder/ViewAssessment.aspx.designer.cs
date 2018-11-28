@@ -11,5 +11,23 @@ namespace OnlineAssessmentSet.LecturerFolder {
     
     
     public partial class ViewAssessment {
+        
+        /// <summary>
+        /// gvViewAssessment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvViewAssessment;
+        
+        /// <summary>
+        /// sqlViewAssessment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlViewAssessment;
     }
 }

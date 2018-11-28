@@ -16,17 +16,6 @@ namespace OnlineAssessmentSet.LecturerFolder
 
         public void fvCreateAssessment_InsertItem()
         {
-            //Book item = new Book();
-            //TryUpdateModel(item);
-
-            //if (ModelState.IsValid)
-            //{
-            //    // Save changes here
-            //    BooksInventoryEntities _db = new BooksInventoryEntities();
-            //    _db.Books.Add(item);
-            //    _db.SaveChanges();
-            //    Response.Redirect("~/ViewData.aspx");
-            //}
             AssessmentSet assessment = new AssessmentSet();
             TryUpdateModel(assessment);
             if (ModelState.IsValid)
